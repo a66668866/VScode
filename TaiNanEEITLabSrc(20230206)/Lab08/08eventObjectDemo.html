@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08eventObjectDemo.html</title>
+</head>
+<body>
+    this is test line<br/>	
+    <img src="WindowObject/WinImages/101.gif" />
+	<a href="http://www.google.com" onclick="event.preventDefault();">google</a>
+
+    <script>
+        //在文件的contextmenu事件，取消預設的動作(preventDefault)
+        document.addEventListener("contextmenu",()=>{
+            event.preventDefault();
+        });
+       
+        document.addEventListener("keydown",function(){
+            if(event.crtlKey && event.Key=="C"){
+                event.preventDefault();
+            console.log(`don't copy`)
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>04Object.html</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script>
+        function f(){
+            return `${this.brand}-${this["max speed"]}`;
+        }
+        let cars={
+            brand:"tesla",
+            "max speed":250,
+            color:"white",
+            dispf:f
+        }   
+        console.log(cars);
+        console.log(cars.brand+","+cars["max speed"]);  //ES5
+        console.log(`${cars.color},${cars["max speed"]}`);   //ES6
+        console.log(cars.dispf());
+
+        //for..in
+        let div1=document.getElementById("myDiv");
+        for(let prop in cars){
+            console.log(prop);
+            console.log(cars[prop]);
+            div1.innerHTML+=`<li>cars[${prop}]=${cars[prop]}</li>`;
+        }
+    
+    </script>        
+</body>
+</html>

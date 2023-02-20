@@ -1,0 +1,12 @@
+
+fieldset{ 
+    border-top-right-radius: 25px 25px;
+    border-bottom-left-radius:  25px 25px;
+    border-bottom-right-radius:  25px 25px;
+    border-top-left-radius:  25px 25px;
+    border: 5px solid red;
+}
+div{ border-bottom: 5px dashed gainsboro;}
+.h7{ color:gray ; }
+.wrong{color: red;}
+.correct{color:green}
