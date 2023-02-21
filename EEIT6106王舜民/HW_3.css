@@ -1,0 +1,17 @@
+.middle{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+
+.square{
+background-color: gray;
+width: 700px;
+text-align: center;
+
+}
+.t{
+font-size: 50px;;
+color: whitesmoke;    
+font-weight: 500;       
+}
