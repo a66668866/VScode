@@ -6,18 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW_4</title>
     <style>
+        *{   box-sizing: border-box;}
         .box{
-            height: 500vh;
+            position: relative;
+            margin: auto;
+            max-width: 600px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        img{
-            height: 500px;
-            width: 500px;
+        li{
+           display: none;
         }
-        .myslide{}
-
+        img{
+            width: 500px;
+            height: 500px;
+        }
+        ul{
+            border: 5px solid red;
+        }
+        .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        }
+        .prev,.next{
+            width: auto;
+            position: absolute;
+            cursor: pointer;
+            color: black;
+            font-weight: bolder;
+        }
+        .prev{
+            left: 0;            
+            border-radius: 0 3px 3px 0;
+            }
+        .next{
+            right: 0;
+            border-radius: 3px 0 0 3px;
+            }
+        
     </style>
 </head>
 <body>
@@ -34,6 +66,87 @@
             <li><img src="Image/HW_4/teddy_bear.jpg" ></li>
             <li><img src="Image/HW_4/towel.jpg" ></li>
         </ul>
-    </div>
+            <p class="prev">&#10094</p>
+            <p class="next">&#10095</p>       
+        </div>
+        <div style="text-align: center;">
+            <input type="button" value="stop" id="stop">
+        </div>
+        <div style="text-align: center;">
+            <span id="test"></span>
+        </div>
+        <script>
+            let SlideImg=document.querySelectorAll("li");
+            let add ="" ;
+            console.log("SlideImg.length="+SlideImg.length)
+            for(let i=0;i<SlideImg.length;i++){ 
+                add+=`<span class="dot">${i+1}</span>`
+            }        
+            document.getElementById("test").innerHTML=`${add}`;
+            
+
+            let index_img=1;
+            
+            show(index_img);
+            getdot();
+            let ispause =true;
+            auto();
+
+            document.getElementsByClassName("next")[0].addEventListener("click",prev)
+            document.getElementsByClassName("prev")[0].addEventListener("click",next)
+            document.getElementsByTagName("input")[0].addEventListener("click",stop)
+            
+
+
+            function prev(){
+                index_img+=1;
+                if(index_img>SlideImg.length){index_img=1}
+                if(index_img<1){index_img=SlideImg.length}
+                show(index_img);
+            }
+
+            function next(){
+                index_img-=1;
+                if(index_img>SlideImg.length){index_img=1}
+                if(index_img<1){index_img=SlideImg.length}
+                show(index_img);
+            }
+            
+            function show(n){
+                console.log("n="+n);
+                for(let i=0;i<SlideImg.length;i++){ 
+                    SlideImg[i].style.display=`none`;
+                }   
+                SlideImg[n-1].style.display=`block`
+            }
+            function getdot(){
+                let dotList=document.getElementsByClassName("dot");
+                for(let i=0;i<dotList.length;i++){
+                    dotList[i].addEventListener("click",()=>{show(i+1)})
+                }
+            }
+            function auto(){
+                let clock = setInterval(()=>{
+                    if(ispause==true){
+                        index_img+=1;
+                        if(index_img>SlideImg.length){index_img=1}
+                        if(index_img<1){index_img=SlideImg.length}
+                        show(index_img)
+                    } },10)
+                
+            }
+            function stop(){
+                document.getElementsByTagName("input")[0].value="continue";  
+                ispause=false;
+                document.getElementsByTagName("input")[0].removeEventListener("click",stop)
+                document.getElementsByTagName("input")[0].addEventListener("click",con)
+            }
+            function con(){
+                document.getElementsByTagName("input")[0].value="stop" ;
+                ispause=true;
+                document.getElementsByTagName("input")[0].removeEventListener("click",con)
+                document.getElementsByTagName("input")[0].addEventListener("click",stop)
+            }
+    </script>
 </body>
 </html>
