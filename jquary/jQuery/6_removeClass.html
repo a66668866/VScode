@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/jquery-3.6.3.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                let name=$(this).val()
+
+                $(`ul>li>span`).removeClass('highlight')
+                if($(this).val()!=``){
+                $(`ul>li>span:contains(${name})`).addClass('highlight')
+                    }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <p>
+        <label for="search">Search: </label>
+        <input type="search" id="search">
+    </p>
+    <ul>
+        <li><span>Ann Hathaway</span></li>
+        <li><span>Robert De Niro</span></li>
+        <li><span>Bruce Willis</span></li>
+        <li><span>Cybill Shepherd</span></li>
+        <li><span>Robert Readford</span></li>
+        <li><span>Maryl Streep</span></li>
+        <li><span>Bred Pitt</span></li>
+        <li><span>Robin Williams</span></li>
+        <li><span>Annete Bening</span></li>
+        <li><span>Robert Downey Jr.</span></li>
+        <li><span>Demi Moore</span></li>
+        <li><span>Angelina Jolie</span></li>
+    </ul>
+</body>
+
+</html>

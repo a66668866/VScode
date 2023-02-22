@@ -7,51 +7,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW_4</title>
     <link rel="stylesheet" href="HW_4.css">
+    <!-- <style>
+        .box {
+            height: 600px;
+            position: relative;
+            margin: auto;
+            max - width: 600px;
+            display: flex;
+            justify - content: center;
+            align - items: center;
+        }
+
+        /* 測試用 */
+        .pic {
+
+            width: 500px;
+            height: 500px;
+        }
+
+        .test {
+            border: 5px solid red;
+            width: 500px;
+            height: 500px;
+        }
+
+        /* 測試用 */
+        .dot {
+            cursor: pointer;
+            display: inline - block;
+            height: 25px;
+            width: 25px;
+            border - radius: 25 %;
+            margin: 5px;
+            background - color: #bbb;
+        }
+
+        .prev,
+        .next {
+            width: auto;
+            height: 50px;
+            position: absolute;
+            cursor: pointer;
+            color: black;
+            font - weight: bolder;
+        }
+
+        .prev {
+            left: 15px;
+            border - radius: 0 3px 3px 0;
+        }
+
+        .next {
+            right: 0;
+            border - radius: 3px 0 0 3px;
+        }
+
+        input {
+            width: 70px;
+            height: 50px;
+        }
+    </style> -->
 </head>
 
 <body>
     <div class="box">
-        <ul style="list-style-type: none;">
-            <a href="https://twitter.com/teenybiscuit/status/707004279324696577/photo/1" target="_blank">
-                <li><img src="Image/HW_4/bagel.jpg"></li>
-            </a>
-            <a href="https://imgur.io/a/K4RWn" target="_blank">
-                <li><img src="Image/HW_4/croissant.jpg"></li>
-            </a>
-            <a href="https://twitter.com/teenybiscuit/status/705232709220769792/photo/1" target="_blank">
-                <li><img src="Image/HW_4/fried_chicken.jpg"></li>
-            </a>
-            <a href="https://twitter.com/branthansen/status/714988087542161408/photo/1" target="_blank">
-                <li><img src="Image/HW_4/gandalf.jpg"></li>
-            </a>
-            <a href="https://imgur.io/a/K4RWn" target="_blank">
-                <li><img src="Image/HW_4/loaf.jpg"></li>
-            </a>
-            <a href="https://twitter.com/teenybiscuit/status/707670947830968320/photo/1" target="_blank">
-                <li><img src="Image/HW_4/mop.jpg"></li>
-            </a>
-            <a href="https://twitter.com/teenybiscuit/status/707727863571582978/photo/1" target="_blank">
-                <li><img src="Image/HW_4/scone.jpg"></li>
-            </a>
-            <a href="https://imgur.io/a/K4RWn" target="_blank">
-                <li><img src="Image/HW_4/teddy_bear.jpg"></li>
-            </a>
-            <a href="https://twitter.com/teenybiscuit/status/707670947830968320/photo/1" target="_blank">
-                <li><img src="Image/HW_4/towel.jpg"></li>
-            </a>
-            <a href="https://twitter.com/teenybiscuit/status/709538333219618816/photo/1" target="_blank">
-                <li><img src="Image/HW_4/ice_cream.jpg"></li>
-            </a>
-            <a href="https://pbs.twimg.com/media/CeW4xluUMAAiDWm?format=jpg&name=medium" target="_blank">
-                <li><img src="Image/HW_4/apple.jpg"></li>
-            </a>
-            <a href="https://twitter.com/teenybiscuit/status/708455344461127680/photo/1" target="_blank">
-                <li><img src="Image/HW_4/marshmallow.jpg"></li>
-            </a>
-            <a href="https://twitter.com/teenybiscuit/status/708813428513574914/photo/1" target="_blank">
-                <li><img src="Image/HW_4/guacamole.jpg"></li>
-            </a>
-        </ul>
+
+        <div class="test"><img class="pic" src="Image/HW_4/croissant.jpg"></div>
+        <div class="test"><img class="pic" src="Image/HW_4/bagel.jpg"></div>
+        <div class="test"><img class="pic" src="Image/HW_4/gandalf.jpg"></div>
+        <div class="test"><img class="pic" src="Image/HW_4/guacamole.jpg"></div>
+        <div class="test"><img class="pic" src="Image/HW_4/mop.jpg"></div>
+
+
         <p class="prev">&#10094</p>
         <p class="next">&#10095</p>
     </div>
@@ -64,7 +91,7 @@
     </div>
 
     <script>
-        let SlideImg = document.querySelectorAll("li");
+        let SlideImg = document.getElementsByClassName("test");
         let add = "";
         console.log("SlideImg.length=" + SlideImg.length)
         for (let i = 0; i < SlideImg.length; i++) {
@@ -117,13 +144,9 @@
         function auto() {
             let clock = setInterval(() => {
                 if (ispause == true) {
-                    
-                    index_img += 1;
-                    if (index_img > SlideImg.length) { index_img = 1 }
-                    if (index_img < 1) { index_img = SlideImg.length }
-                    show(index_img)
+                    next();
                 }
-            }, timeSet )
+            }, timeSet)
 
         }
         // function stop() {
@@ -138,27 +161,27 @@
         //     document.getElementsByTagName("input")[0].removeEventListener("click", con)
         //     document.getElementsByTagName("input")[0].addEventListener("click", stop)
         // }
-        function stop(){
-            switch(document.getElementsByTagName("input")[0].value){
+        function stop() {
+            switch (document.getElementsByTagName("input")[0].value) {
                 case "stop":
-                document.getElementsByTagName("input")[0].value = "continue";
-                ispause = false;
-                break;
+                    document.getElementsByTagName("input")[0].value = "continue";
+                    ispause = false;
+                    break;
                 case "continue":
-                document.getElementsByTagName("input")[0].value = "stop";
-                ispause = true;
-                break;
+                    document.getElementsByTagName("input")[0].value = "stop";
+                    ispause = true;
+                    break;
             }
         }
-        function changeSpeed(){
-            switch(timeSet){
+        function changeSpeed() {
+            switch (timeSet) {
                 case 1000:
-                    timeSet=10;
-                    document.getElementsByTagName("input")[1].value=`高速`;
+                    timeSet = 10;
+                    document.getElementsByTagName("input")[1].value = `高速`;
                     break;
                 case 10:
-                    timeSet=1000;
-                    document.getElementsByTagName("input")[1].value=`慢速`;
+                    timeSet = 1000;
+                    document.getElementsByTagName("input")[1].value = `慢速`;
                     break;
             }
 
