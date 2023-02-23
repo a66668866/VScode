@@ -56,114 +56,16 @@
         <p class="next">&#10095</p>
     </div>
     <div style="text-align: center;">
-        <input type="button" value="stop" id="stop">
-        <span><input type="button" value="速度切換"></span>
+        <input class="button" type="button" value="stop" id="stop">
+        <span><input class="button" type="button" value="重設"></span>
+        <span><input class="Speed" type="range" min="0" max="1000" value="1000" step="100"></span>
+        <span><input type="text" size="15" readonly></span>
     </div>
     <div style="text-align: center;">
         <span id="test"></span>
     </div>
 
-    <script>
-        let SlideImg = document.querySelectorAll("li");
-        let add = "";
-        console.log("SlideImg.length=" + SlideImg.length)
-        for (let i = 0; i < SlideImg.length; i++) {
-            add += `<span class="dot">${i + 1}</span>`
-        }
-        document.getElementById("test").innerHTML = `${add}`;
-
-
-        let index_img = 1;
-
-        show(index_img);
-        getdot();
-        let ispause = true;
-        let timeSet = 1000;
-        auto();
-
-        document.getElementsByClassName("next")[0].addEventListener("click", next)
-        document.getElementsByClassName("prev")[0].addEventListener("click", prev)
-        document.getElementsByTagName("input")[0].addEventListener("click", stop)
-        document.getElementsByTagName("input")[1].addEventListener("click", changeSpeed)
-
-
-        function prev() {
-            index_img -= 1;
-            if (index_img > SlideImg.length) { index_img = 1 }
-            if (index_img < 1) { index_img = SlideImg.length }
-            show(index_img);
-        }
-
-        function next() {
-            index_img += 1;
-            if (index_img > SlideImg.length) { index_img = 1 }
-            if (index_img < 1) { index_img = SlideImg.length }
-            show(index_img);
-        }
-
-        function show(n) {
-            console.log("n=" + n);
-            for (let i = 0; i < SlideImg.length; i++) {
-                SlideImg[i].style.display = `none`;
-            }
-            SlideImg[n - 1].style.display = `block`
-        }
-        function getdot() {
-            let dotList = document.getElementsByClassName("dot");
-            for (let i = 0; i < dotList.length; i++) {
-                dotList[i].addEventListener("click", () => { show(i + 1) })
-            }
-        }
-        function auto() {
-            let clock = setInterval(() => {
-                if (ispause == true) {
-                    
-                    index_img += 1;
-                    if (index_img > SlideImg.length) { index_img = 1 }
-                    if (index_img < 1) { index_img = SlideImg.length }
-                    show(index_img)
-                }
-            }, timeSet )
-
-        }
-        // function stop() {
-        //     document.getElementsByTagName("input")[0].value = "continue";
-        //     ispause = false;
-        //     document.getElementsByTagName("input")[0].removeEventListener("click", stop)
-        //     document.getElementsByTagName("input")[0].addEventListener("click", con)
-        // }
-        // function con() {
-        //     document.getElementsByTagName("input")[0].value = "stop";
-        //     ispause = true;
-        //     document.getElementsByTagName("input")[0].removeEventListener("click", con)
-        //     document.getElementsByTagName("input")[0].addEventListener("click", stop)
-        // }
-        function stop(){
-            switch(document.getElementsByTagName("input")[0].value){
-                case "stop":
-                document.getElementsByTagName("input")[0].value = "continue";
-                ispause = false;
-                break;
-                case "continue":
-                document.getElementsByTagName("input")[0].value = "stop";
-                ispause = true;
-                break;
-            }
-        }
-        function changeSpeed(){
-            switch(timeSet){
-                case 1000:
-                    timeSet=10;
-                    document.getElementsByTagName("input")[1].value=`高速`;
-                    break;
-                case 10:
-                    timeSet=1000;
-                    document.getElementsByTagName("input")[1].value=`慢速`;
-                    break;
-            }
-
-        }
-    </script>
+    <script src="HW_4.JS"></script>
 </body>
 
 </html>

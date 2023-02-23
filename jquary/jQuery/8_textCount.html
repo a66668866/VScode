@@ -8,14 +8,26 @@
     <script src="./js/jquery-3.6.3.js"></script>
     <script>
         $(document).ready(function(){
+			let textMax = $('#talk').attr('maxlength')
+			$('#feedback').html(`<span style=color:red;>${textMax}</span> characters remaining.`)
 
+			$('#talk').keyup(function(){
+				let textLength = $(this).val().length
+
+				$('#feedback').html(`<span style=color:red;>${textMax - textLength}</span> characters remaining.`)
+			
+				$('#content').text($(this).val()).css({
+					whiteSpace: 'pre',
+					font: '13.3333px monospace',
+				})
+			})
         })
     </script>
 </head>
 
 <body>
 	<form>
-		<textarea id="talk" rows="5" cols="25" maxlength="100"></textarea>
+		<textarea id="talk" rows="5" cols="25" maxlength="80"></textarea>
 		<p id="feedback"></p>
 		<hr>
 		<p id="content"></p>
@@ -23,3 +35,15 @@
 </body>
 
 </html>
+
+<!-- 
+What did you
+     use your 
+
+computer for
+  ?
+ -->
+
+
+
+
