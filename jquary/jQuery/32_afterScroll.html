@@ -4,11 +4,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>jQuery</title>
+	<style>
+		textarea{
+			width: 300px;
+			height: 200px;
+		}
+	</style>
 	<link rel="stylesheet" href="./css/style.css">
 	<script src="./js/jquery-3.6.3.js"></script>
 	<script>
 		$(function () {
-			
+			$('#agree').attr('disabled',true)
+
+			$('#textarea').scroll(function(){
+				let scroll_top = $(this).scrollTop()
+				let inner_height=$(this).innerHeight()
+				let textarea_height=$(this)[0].scrollHright
+
+				if(scroll_top == textarea_height - inner_height){
+					$('#agree').attr('disabled',false)
+				}
+			})
 		})	
 	</script>
 <body>

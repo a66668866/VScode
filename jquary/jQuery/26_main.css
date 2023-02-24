@@ -3,3 +3,40 @@
 	padding: 0px;
 	list-style: none;
 }
+#sliderBoard{		/* div */
+	border: 5px dashed #ccc;
+	width: 300px;
+	margin: 100px;
+
+	overflow: hidden;
+}
+#sliderBoard ul{	/* ul */
+	width: 1500px;
+
+	position: relative;
+	animation: slider 5s 3;
+}
+#sliderBoard li{	/* li */
+	width: 300px;
+	height: 400px;
+
+	font: bold 200px Tahoma;
+	text-align: center;
+	line-height: 400px;
+
+	/* display: inline-block; */
+	float: left;
+}
+#sliderBoard li:nth-child(1){background-color: red;}
+#sliderBoard li:nth-child(2){background-color: orange;}
+#sliderBoard li:nth-child(3){background-color: yellow;}
+#sliderBoard li:nth-child(4){background-color: green;}
+#sliderBoard li:nth-child(5){background-color: blue;}
+
+@keyframes slider {
+	 0%{left:     0px;}
+	20%{left:  -300px;}
+	50%{left:  -600px;}
+	70%{left:  -900px;}
+	90%{left: -1200px;}
+}

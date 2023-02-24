@@ -53,7 +53,9 @@ function show(n) {
 function getdot() {
     let dotList = document.getElementsByClassName("dot");
     for (let i = 0; i < dotList.length; i++) {
-        dotList[i].addEventListener("click", () => { show(i + 1) })
+        dotList[i].addEventListener("click", () => { 
+            index_img=i+1;
+            show(index_img) })
     }
 }
 function auto() {

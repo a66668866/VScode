@@ -8,7 +8,19 @@
 	<script src="./js/jquery-3.6.3.js"></script>
 	<script>
 		$(function () {
-			
+			$('.textHover').mousemove(function(e){
+				// 偵測游標所指的 X 座標和 Y 座標
+				// $('#theDiv').show().text(`X: ${e.clientX} | Y: ${e.clientY}`)
+
+				let theText = $(this).attr('data-text')
+				// console.log(theText);
+				$('#theDiv').show().text(theText).css({
+					left: e.clientX + 10,
+					top: e.clientY + 10,
+				})
+			}).mouseout(function(){
+				$('#theDiv').hide()
+			})
 		})	
 	</script>
 </head>

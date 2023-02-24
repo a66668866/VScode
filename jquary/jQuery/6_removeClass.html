@@ -7,14 +7,42 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/jquery-3.6.3.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#search').keyup(function(){
-                let name=$(this).val()
+        // JavaScript 搜尋的語法
+        // Array  ---> includes()
+        // String ---> search(new RegExp())
 
+        $(document).ready(function(){
+            // 1
+            // $('#search').keyup(function(){
+            //     let name = $(this).val()
+                
+            //     $(`ul>li>span`).removeClass('highlight')
+
+            //     if($(this).val() != ''){
+            //         $(`ul>li>span:contains(${name})`).addClass('highlight')
+            //     }
+            // })
+
+            // 2
+            // $('#search').on('input',function(){
+            //     let name = $(this).val()
+                
+            //     $(`ul>li>span`).removeClass('highlight')
+
+            //     if($(this).val() != ''){
+            //         $(`ul>li>span:contains(${name})`).addClass('highlight')
+            //     }
+            // })
+
+            // 3
+            $('#search').on('keyup search',function(){
+                let name = $(this).val()
+                
                 $(`ul>li>span`).removeClass('highlight')
-                if($(this).val()!=``){
-                $(`ul>li>span:contains(${name})`).addClass('highlight')
-                    }
+
+                if($(this).val() != ''){
+                    $(`ul>li>span:contains(${name})`).addClass('highlight')
+                }
             })
         })
     </script>

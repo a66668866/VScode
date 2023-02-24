@@ -8,7 +8,11 @@
 	<script src="./js/jquery-3.6.3.js"></script>
 	<script>
 		$(function () {
-			
+			$('#submitButton').click(function(){
+				let name = $('#name').val()
+
+				$('#feedback').append(name + '<br>').css('textDecoration','underline')
+			})
 		})	
 	</script>
 </head>

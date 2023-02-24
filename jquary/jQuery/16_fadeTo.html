@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="UTF-8">
 	<title>jQuery</title>
@@ -8,7 +7,12 @@
 	<script src="./js/jquery-3.6.3.js"></script>
 	<script>
 		$(function () {
-			
+			$('img').css('opacity',0.5).mouseover(function(){
+				// $(this).css('opacity',1)
+				$(this).fadeTo(500,1)
+
+				$('img').not(this).fadeTo(400,0.5)
+			})
 		})	
 	</script>
 </head>

@@ -3,3 +3,39 @@
 	padding: 0px;
 	list-style: none;
 }
+.image{
+	width: 100%;
+	height: 500px;
+}
+#sliderBoard{	/* div */
+	border: 1px solid #ccc;
+	width: 60%;
+	height: 550px;
+	margin: 100px auto;
+
+	overflow: hidden;
+}
+#content{		/* ul */
+	position: relative;
+}
+#content li{	/* li */
+	float: left;
+}
+
+/* circle button */
+#contentButton{
+	text-align: center;
+	width: 100%;
+	height: 50px;
+}
+#contentButton li{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: #ccc;
+	margin: 5px;
+	display: inline-block;
+}
+#contentButton li.clicked{
+	background-color: #666;
+}

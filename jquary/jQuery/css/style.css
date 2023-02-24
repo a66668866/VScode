@@ -1,2 +1,55 @@
-/* 6_removeclass.html */
-.highlight{background-color: yellow;}
+/* 6_removeClass.html + 7_bind_on.html */
+.highlight{
+    background-color: yellow;
+}
+
+/* 11_textHover.html */
+.textHover{
+    cursor: pointer;
+}
+#theDiv{
+    border: 1px solid #aaa;
+    color: #666;
+    padding: 5px;
+    background-color: #cba;
+
+    position: absolute;
+    display: none;
+}
+
+/* 12_topMessage.html */
+#topMessage{
+    background-color: #666;
+    font: 20px Tahoma;
+    color: #eee;
+    padding: 15px;
+    text-align: center;
+
+    display: none;
+}
+#topMessage:hover{
+    cursor: pointer;
+    background-color: darkgoldenrod;
+}
+
+/* 14_animation.html */
+.myPhoto{
+    width: 100px;
+}
+#imgBoard{
+    width: 100px;
+    background-color: #aaa;
+    padding: 10px 30px;
+
+    position: absolute;
+    left: -130px;
+}
+
+/* 24_centerOfWindow.html */
+#inCenter{
+    width: 200px;
+    height: 200px;
+    background-color: #ccc;
+
+    position: absolute;
+}

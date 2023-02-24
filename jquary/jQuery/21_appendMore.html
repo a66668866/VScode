@@ -7,7 +7,12 @@
 	<script src="./js/jquery-3.6.3.js"></script>
 	<script>
 		$(function () {
-			
+			$('.food').click(function(){
+				let item = $(this).text()
+				$('#myList').append(`<li>${item}</li>`)
+				$('#mySelect').append(`<option>${item}</option>`)
+				$('#myTable').attr('border',1).append(`<tr><td>${item}</td></tr>`)
+			})
 		})	
 	</script>
 </head>

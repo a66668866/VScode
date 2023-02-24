@@ -8,14 +8,16 @@
 	<script src="./js/jquery-3.6.3.js"></script>
 	<script>
 		$(function () {
-			
+			$('#topMessage').slideDown(1500).click(function(){
+				$(this).slideUp(1000)
+			})
 		})	
 	</script>
 </head>
 
-<body>
+<body style="margin: 0px;">
 	<div id="topMessage">
-		We see you're not logged in. Do you want to sign up?
+		We see you're not logged in. Do you want to <a href="#">sign up</a>?
 	</div>
 </body>
 
