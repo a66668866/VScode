@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW目錄</title>
+    <style>
+        .box {
+            width: auto;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+        }
+        li{
+            font-size: 35px;
+            margin-top: 35px;
+        }
+        
+        </style>
 </head>
+
 <body>
-   <div>
-        <div style="float: left;width: 30%;height: 100%; background-color: burlywood;">
-           <ul style="list-style-type: none;">
-                <li><a href="HW_1.html">HomeWork1</a></li>
-                <li><a href="HW_2.html">HomeWork2</a></li>
-                <li><a href="HW_3.html">HomeWork3</a></li>
-                <li><a href="HW_4.html">HomeWork4</a></li>
+    <div class="box">
+        <div style="width: 15%;height: 100%; background-color: burlywood;">
+            <ul style="list-style-type: none;">
+                <li><a href="html/HW_1.html" target="main">HomeWork1</a></li>
+                <li><a href="html/HW_2.html" target="main">HomeWork2</a></li>
+                <li><a href="html/HW_3.html" target="main">HomeWork3</a></li>
+                <li><a href="html/HW_4.html" target="main">HomeWork4</a></li>
             </ul>
         </div>
-        <div></div>
-    </div> 
+        <div style="width: 85%;height: 100%;">
+            <div style="width: 100%;height: 10%;background-color: aliceblue;text-align: center;font-size: 35px;"id="banner"></div>
+            <iframe style="width: 100%;height: 90%;background-color: aliceblue;" frameborder="0" name="main"></iframe>
+        </div>
+    </div>
+    <script>
+        let homework_list=document.querySelectorAll("li")
+        for(let i=0;i<homework_list.length;i++){
+            homework_list[i].addEventListener("click",()=>{
+                document.getElementById("banner").innerHTML=`<span>Homework ${i+1}</span>`
+            })
+        }
+    </script>
 </body>
+
 </html>
