@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW_5</title>
+    <style>
+        p {
+            font-size: xx-large;
+        }
+
+        .box {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        th {
+            width: 45px;
+            margin-right: 20px;
+            color: whitesmoke;
+            background-color: darkgoldenrod;
+        }
+
+        td {
+            width: 45px;
+            margin-right: 20px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div style="height: 100%;width: 25%;">
+            <div style="height: 10%;width: 100%;">
+                <p>Welcome</p>
+            </div>
+            <div style="height: 90%;width: 100%;">
+                <select name="yyyy">
+                    <option value="2010" name="year" selected>2010</option>
+                    <option value="2011" name="year">2011</option>
+                    <option value="2012" name="year">2012</option>
+                    <option value="2013" name="year">2013</option>
+                    <option value="2014" name="year">2014</option>
+                    <option value="2015" name="year">2015</option>
+                    <option value="2016" name="year">2016</option>
+                    <option value="2017" name="year">2017</option>
+                    <option value="2018" name="year">2018</option>
+                    <option value="2019" name="year">2019</option>
+                    <option value="2020" name="year">2020</option>
+                    <option value="2021" name="year">2021</option>
+                    <option value="2022" name="year">2022</option>
+                    <option value="2023" name="year">2023</option>
+                    <option value="2024" name="year">2024</option>
+                    <option value="2025" name="year">2025</option>
+                </select>
+                <span>年</span>
+                <select name="mm">
+                    <option selected disabled>請選擇月份</option>
+                    <option value="1" name="month">1</option>
+                    <option value="2" name="month">2</option>
+                    <option value="3" name="month">3</option>
+                    <option value="4" name="month">4</option>
+                    <option value="5" name="month">5</option>
+                    <option value="6" name="month">6</option>
+                    <option value="7" name="month">7</option>
+                    <option value="8" name="month">8</option>
+                    <option value="9" name="month">9</option>
+                    <option value="10" name="month">10</option>
+                    <option value="11" name="month">11</option>
+                    <option value="12" name="month">12</option>
+                </select>
+                <span>月</span>
+                <select>
+
+                </select>
+                <span>日</span>
+                <div>
+                    <label for="">
+                        <table>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </table>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div style="height: 100%;width: 25%;">
+            <div style="height: 10%;width: 100%;">
+                <p>Information</p>
+            </div>
+            <div style="height: 90%;width: 100%;">
+                <input type="text" id="date_text" readonly>
+            </div>
+        </div>
+    </div>
+    <script>
+        let month_list = document.getElementsByName("month")
+        let date_d = 0;
+        
+        // console.log(document.querySelectorAll("select")[0].value)
+        
+        document.querySelectorAll("select")[1].addEventListener("change", writeTheDate)
+        document.querySelectorAll("select")[0].addEventListener("change", writeTheDate)
+        
+        
+        
+        
+        
+        
+        function writeTheDate() {
+            let catch_month = document.querySelectorAll("select")[1].value
+            let year_catch = document.querySelectorAll("select")[0].value
+            let date_catch = document.querySelectorAll("select")[2].value
+            document.querySelectorAll("select")[2].innerHTML = "";
+            console.log(catch_month)
+            if ((catch_month == 1) || (catch_month == 3) || (catch_month == 5) || (catch_month == 7) || (catch_month == 8) || (catch_month == 10) || (catch_month == 12)) {
+                date_d = 31;
+                console.log("month catched")
+            } else {
+                if ((catch_month == 4) || (catch_month == 6) || (catch_month == 9) || (catch_month == 11)) {
+                    date_d = 30;
+                    console.log("month catched")
+                } else {
+                    if (catch_month == 2) {
+                        if ((year_catch % 4 == 0) && (year_catch % 100 != 0)) {
+                            console.log("year_catch % 400 =" + year_catch % 400)
+                            date_d = 29;
+                            console.log("month catched")
+                        }
+                        else {
+                            if (year_catch % 400 == 0) {
+                                date_d = 29;
+                                console.log("month catched")
+                            }
+                            else {
+                                date_d = 28;
+                                console.log("month catched")
+                            }
+                        }
+                    }
+                    else {
+                        console.log("選項非月份")
+                    }
+                }
+            }
+            for (let j = 1; j <= date_d; j++) {
+                document.querySelectorAll("select")[2].innerHTML += `<option value=${j} name="dd">${j}</option>`
+            }
+            console.log(new Date(`${catch_month},1,${year_catch}`).getDay())
+            
+            // for(let i=0;i<new Date(`${catch_month},1,${year_catch}`).getDay();i++){
+            //     document.querySelectorAll("table")[0].innerHTML +=`<td></td>` 
+            // }
+            
+        }
+    </script>
+</body>
+
+</html>
