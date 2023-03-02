@@ -108,17 +108,17 @@
     <script>
         let month_list = document.getElementsByName("month")
         let date_d = 0;
-        
+
         // console.log(document.querySelectorAll("select")[0].value)
-        
+
         document.querySelectorAll("select")[1].addEventListener("change", writeTheDate)
         document.querySelectorAll("select")[0].addEventListener("change", writeTheDate)
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         function writeTheDate() {
             let catch_month = document.querySelectorAll("select")[1].value
             let year_catch = document.querySelectorAll("select")[0].value
@@ -159,20 +159,18 @@
                 document.querySelectorAll("select")[2].innerHTML += `<option value=${j} name="dd">${j}</option>`
             }
             console.log(new Date(`${catch_month},1,${year_catch}`).getDay())
+
+            let table_list = document.querySelectorAll("table")
+            let create_tr = document.createElement("tr")
+            let create_td = document.createElement("td")
+            let empty_td=``
             
-        //     let table_list = document.querySelectorAll("table")
-        //     let create_tr = document.createElement("tr")
-        //     let create_td = document.createElement("td")
-        //    for (let i =0;  i <new Date(`${catch_month},1,${year_catch}`).getDay() ; i++){
-            
-            
-            //    }
-            
-        }
-        
-        function input_td(text){
-                let input_text= document.createTextNode(text)
-            
+            for (let i = 0; i < new Date(`${catch_month},1,${year_catch}`).getDay(); i++) {
+                empty_td+=`<td></td>`
+            }
+            table_list[0].appendChild(create_tr).innerHTML=empty_td
+            console.log(table_list[0].lastChild.tagName )
+            table_list[0].lastChild.appendChild(create_td)
         }
     </script>
 </body>
