@@ -1,0 +1,32 @@
+p {
+    font-size: xx-large;
+}
+
+.box {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+th {
+    width: 45px;
+    color: whitesmoke;
+    background-color: darkgoldenrod;
+}
+
+td {
+    width: 45px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.active,
+td:hover {
+    background-color: black;
+    color: whitesmoke;
+}
+
+table {
+    text-align: center;
+}

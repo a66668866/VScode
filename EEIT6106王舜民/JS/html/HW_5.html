@@ -6,39 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW_5</title>
-    <style>
-        p {
-            font-size: xx-large;
-        }
-
-        .box {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        th {
-            width: 50px;
-            color: whitesmoke;
-            background-color: darkgoldenrod;
-        }
-
-        td {
-            width: 50px;
-            border: 1px solid gray;
-            cursor: pointer;
-        }
-
-        td:hover {
-            background-color: black;
-            color: whitesmoke;
-        }
-
-        table {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="HW_5.css">
 </head>
 
 <body>
@@ -48,23 +16,13 @@
                 <p>Welcome</p>
             </div>
             <div style="height: 90%;width: 100%;">
+
+                <span><input type="text" id="getYear" size="10" placeholder="請輸入起始年份"></span>
+                <span>~</span>
+                <span><input type="text" id="getYear" size="10" placeholder="請輸入結束年份"></span>
+                <span><input type="button" id="submit" value="submit"></span><br>
+                <div id="yearRange_text"></div>
                 <select name="yyyy">
-                    <option value="2010" name="year" selected>2010</option>
-                    <option value="2011" name="year">2011</option>
-                    <option value="2012" name="year">2012</option>
-                    <option value="2013" name="year">2013</option>
-                    <option value="2014" name="year">2014</option>
-                    <option value="2015" name="year">2015</option>
-                    <option value="2016" name="year">2016</option>
-                    <option value="2017" name="year">2017</option>
-                    <option value="2018" name="year">2018</option>
-                    <option value="2019" name="year">2019</option>
-                    <option value="2020" name="year">2020</option>
-                    <option value="2021" name="year">2021</option>
-                    <option value="2022" name="year">2022</option>
-                    <option value="2023" name="year">2023</option>
-                    <option value="2024" name="year">2024</option>
-                    <option value="2025" name="year">2025</option>
                 </select>
                 <span>年</span>
                 <select name="mm">
@@ -102,108 +60,8 @@
             <div style="height: 90%;width: 100%;" id="textDate"></div>
         </div>
     </div>
-    <script>
-		document.getElementById("input").addEventListener("click",()=>{
-			document.getElementById("input").innerHTML="File : <input type=\"file\" name=\"file\" \/><br>"
-		})
-	</script>
-    <script>
-        let month_list = document.getElementsByName("month")
-        let date_d = 0;
-        let month_catch
-        let year_catch
-        let date_catch = document.querySelectorAll("select")[2].value
-        
-        // console.log(document.querySelectorAll("select")[0].value)
 
-        document.querySelectorAll("select")[1].addEventListener("change", writeTheDate)
-        document.querySelectorAll("select")[0].addEventListener("change", writeTheDate)
-
-
-        
-        test();
-        
-
-        function test() {  
-            for (let i = 0; i < document.querySelectorAll("td").length; i++) {
-                document.querySelectorAll("td").addEventListener("click",()=>{
-                console.log(`worked`);
-            })
-
-        }}
-
-
-
-        function writeTheDate() {
-            month_catch = document.querySelectorAll("select")[1].value
-            year_catch = document.querySelectorAll("select")[0].value
-            document.querySelectorAll("select")[2].innerHTML = "";
-            console.log(month_catch)
-            if ((month_catch == 1) || (month_catch == 3) || (month_catch == 5) || (month_catch == 7) || (month_catch == 8) || (month_catch == 10) || (month_catch == 12)) {
-                date_d = 31;
-                console.log("month catched")
-            } else {
-                if ((month_catch == 4) || (month_catch == 6) || (month_catch == 9) || (month_catch == 11)) {
-                    date_d = 30;
-                    console.log("month catched")
-                } else {
-                    if (month_catch == 2) {
-                        if ((year_catch % 4 == 0) && (year_catch % 100 != 0)) {
-                            console.log("year_catch % 400 =" + year_catch % 400)
-                            date_d = 29;
-                            console.log("month catched")
-                        }
-                        else {
-                            if (year_catch % 400 == 0) {
-                                date_d = 29;
-                                console.log("month catched")
-                            }
-                            else {
-                                date_d = 28;
-                                console.log("month catched")
-                            }
-                        }
-                    }
-                    else {
-                        console.log("選項非月份")
-                    }
-                }
-            }
-            for (let j = 1; j <= date_d; j++) {
-                document.querySelectorAll("select")[2].innerHTML += `<option value=${j} name="dd">${j}</option>`
-            }
-
-            let table_list = document.querySelectorAll("table")
-            let create_tr = document.createElement("tr")
-            let create_td = document.createElement("td")
-            let empty_td = ``
-            table_list[0].innerHTML = ``;
-
-            for (let i = 0; i < new Date(`${month_catch},1,${year_catch}`).getDay(); i++) {
-                empty_td += `<td></td>`
-            }
-            table_list[0].insertRow().innerHTML = `<th>Sun</th>
-                                                <th>Mon</th>
-                                                <th>Tue</th>
-                                                <th>Wed</th>
-                                                <th>Thu</th>
-                                                <th>Fri</th>
-                                                <th>Sat</th>`
-            table_list[0].appendChild(create_tr).innerHTML = empty_td
-
-            for (let i = 1; i <= date_d; i++) {
-                if (new Date(`${month_catch},${i},${year_catch}`).getDay() == 0) {
-                    // console.log(new Date(`${month_catch},${i},${year_catch}`).getDay())
-                    table_list[0].insertRow().innerHTML = `<td>${i}</td>`
-                } else {
-                    // console.log(new Date(`${month_catch},${i},${year_catch}`).getDay())
-                    table_list[0].lastChild.innerHTML += `<td>${i}</td>`
-                }
-            }
-            console.log(td_catch.length)
-        }
-
-    </script>
+    <script src="HW_5.js"> </script>
 </body>
 
 </html>
