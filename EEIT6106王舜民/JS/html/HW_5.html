@@ -19,16 +19,24 @@
         }
 
         th {
-            width: 45px;
-            margin-right: 20px;
+            width: 50px;
             color: whitesmoke;
             background-color: darkgoldenrod;
         }
 
         td {
-            width: 45px;
-            margin-right: 20px;
+            width: 50px;
             border: 1px solid gray;
+            cursor: pointer;
+        }
+
+        td:hover {
+            background-color: black;
+            color: whitesmoke;
+        }
+
+        table {
+            text-align: center;
         }
     </style>
 </head>
@@ -82,15 +90,6 @@
                 <div>
                     <label for="">
                         <table>
-                            <tr>
-                                <th>Sun</th>
-                                <th>Mon</th>
-                                <th>Tue</th>
-                                <th>Wed</th>
-                                <th>Thu</th>
-                                <th>Fri</th>
-                                <th>Sat</th>
-                            </tr>
                         </table>
                     </label>
                 </div>
@@ -100,40 +99,55 @@
             <div style="height: 10%;width: 100%;">
                 <p>Information</p>
             </div>
-            <div style="height: 90%;width: 100%;">
-                <input type="text" id="date_text" readonly>
-            </div>
+            <div style="height: 90%;width: 100%;" id="textDate"></div>
         </div>
     </div>
     <script>
+		document.getElementById("input").addEventListener("click",()=>{
+			document.getElementById("input").innerHTML="File : <input type=\"file\" name=\"file\" \/><br>"
+		})
+	</script>
+    <script>
         let month_list = document.getElementsByName("month")
         let date_d = 0;
-
+        let month_catch
+        let year_catch
+        let date_catch = document.querySelectorAll("select")[2].value
+        
         // console.log(document.querySelectorAll("select")[0].value)
 
         document.querySelectorAll("select")[1].addEventListener("change", writeTheDate)
         document.querySelectorAll("select")[0].addEventListener("change", writeTheDate)
 
 
+        
+        test();
+        
 
+        function test() {  
+            for (let i = 0; i < document.querySelectorAll("td").length; i++) {
+                document.querySelectorAll("td").addEventListener("click",()=>{
+                console.log(`worked`);
+            })
+
+        }}
 
 
 
         function writeTheDate() {
-            let catch_month = document.querySelectorAll("select")[1].value
-            let year_catch = document.querySelectorAll("select")[0].value
-            let date_catch = document.querySelectorAll("select")[2].value
+            month_catch = document.querySelectorAll("select")[1].value
+            year_catch = document.querySelectorAll("select")[0].value
             document.querySelectorAll("select")[2].innerHTML = "";
-            console.log(catch_month)
-            if ((catch_month == 1) || (catch_month == 3) || (catch_month == 5) || (catch_month == 7) || (catch_month == 8) || (catch_month == 10) || (catch_month == 12)) {
+            console.log(month_catch)
+            if ((month_catch == 1) || (month_catch == 3) || (month_catch == 5) || (month_catch == 7) || (month_catch == 8) || (month_catch == 10) || (month_catch == 12)) {
                 date_d = 31;
                 console.log("month catched")
             } else {
-                if ((catch_month == 4) || (catch_month == 6) || (catch_month == 9) || (catch_month == 11)) {
+                if ((month_catch == 4) || (month_catch == 6) || (month_catch == 9) || (month_catch == 11)) {
                     date_d = 30;
                     console.log("month catched")
                 } else {
-                    if (catch_month == 2) {
+                    if (month_catch == 2) {
                         if ((year_catch % 4 == 0) && (year_catch % 100 != 0)) {
                             console.log("year_catch % 400 =" + year_catch % 400)
                             date_d = 29;
@@ -158,20 +172,37 @@
             for (let j = 1; j <= date_d; j++) {
                 document.querySelectorAll("select")[2].innerHTML += `<option value=${j} name="dd">${j}</option>`
             }
-            console.log(new Date(`${catch_month},1,${year_catch}`).getDay())
 
             let table_list = document.querySelectorAll("table")
             let create_tr = document.createElement("tr")
             let create_td = document.createElement("td")
-            let empty_td=``
-            
-            for (let i = 0; i < new Date(`${catch_month},1,${year_catch}`).getDay(); i++) {
-                empty_td+=`<td></td>`
+            let empty_td = ``
+            table_list[0].innerHTML = ``;
+
+            for (let i = 0; i < new Date(`${month_catch},1,${year_catch}`).getDay(); i++) {
+                empty_td += `<td></td>`
             }
-            table_list[0].appendChild(create_tr).innerHTML=empty_td
-            console.log(table_list[0].lastChild.tagName )
-            table_list[0].lastChild.appendChild(create_td)
+            table_list[0].insertRow().innerHTML = `<th>Sun</th>
+                                                <th>Mon</th>
+                                                <th>Tue</th>
+                                                <th>Wed</th>
+                                                <th>Thu</th>
+                                                <th>Fri</th>
+                                                <th>Sat</th>`
+            table_list[0].appendChild(create_tr).innerHTML = empty_td
+
+            for (let i = 1; i <= date_d; i++) {
+                if (new Date(`${month_catch},${i},${year_catch}`).getDay() == 0) {
+                    // console.log(new Date(`${month_catch},${i},${year_catch}`).getDay())
+                    table_list[0].insertRow().innerHTML = `<td>${i}</td>`
+                } else {
+                    // console.log(new Date(`${month_catch},${i},${year_catch}`).getDay())
+                    table_list[0].lastChild.innerHTML += `<td>${i}</td>`
+                }
+            }
+            console.log(td_catch.length)
         }
+
     </script>
 </body>
 
