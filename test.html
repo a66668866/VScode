@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <input type="button" value="新增上傳欄位" id="input_button">
+    <form method="post" action="../UploadFiles" enctype="multipart/form-data">
+    </form>
+    <input type="submit" value="上傳" /><span><input type="button" value="delete" id="delete"></span>
+
     <script>
-        let dt=new Date();
-        console.log(dt.getDay())
+        let i = 1;
+        document.getElementById("input_button").addEventListener("click", () => {
+            document.querySelectorAll("form")[0].insertAdjacentHTML("beforeend", "<div>File " + i + ": <input type='file' name='file'" + i + " /></div>")
+            i += 1;
+        })
+
+        document.getElementById("delete").addEventListener("click",()=>{
+            document.querySelectorAll("form")[0].lastElementChild.remove()
+        })
+
     </script>
 </body>
+
 </html>
